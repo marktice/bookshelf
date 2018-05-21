@@ -1,0 +1,18 @@
+@uri = http://localhost:3000
+
+###
+GET {{uri}}/books
+
+###
+GET {{uri}}/books/1
+
+###
+# adds the book below
+POST {{uri}}/books
+Content-Type: application/json
+
+{
+  "title": "The Subtle Art of Not Giving a F*ck : A Counterintuitive Approach to Living a Good Life",
+  "description": "In this generation-defining self-help guide, a superstar blogger cuts through the crap to show us how to stop trying to be 'positive' all the time so that we can truly become better, happier people.",
+  "isbn": "0062457713"
+}
