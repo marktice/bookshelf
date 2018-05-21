@@ -46,7 +46,7 @@ const form = document.querySelector('form')
 
 form.addEventListener('submit', captureForm)
 
-// 4. submitBook or submitForm
+// 4. capture form data
 function captureForm(event) {
   event.preventDefault()
   
