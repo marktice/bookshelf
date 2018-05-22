@@ -1,12 +1,14 @@
+const bookList = document.querySelector('ul')
+const form = document.querySelector('form')
 
 function createBookItem({id, title, description, isbn}) {
   const li = document.createElement('li')
-  li.dataset.id = id
-  li.classList.add('collection-item')
-  
   const paraTitle = document.createElement('p')
   const paraDescription = document.createElement('p')
   const paraisbn = document.createElement('p')
+
+  li.classList.add('collection-item')
+  li.dataset.id = id
   
   paraTitle.textContent = title
   paraDescription.textContent = description
@@ -18,8 +20,6 @@ function createBookItem({id, title, description, isbn}) {
 
   return li
 }
-
-const bookList = document.querySelector('ul')
 
 fetchBooks()
   .then(addToBookList)
@@ -42,31 +42,29 @@ function addToBookList(books) {
 }
 
 // 3. add a submit event listener to form //another tip: don’t submit data if any form field is empty
-const form = document.querySelector('form')
-
-form.addEventListener('submit', captureForm)
+form.addEventListener('submit', submitForm)
 
 // 4. capture form data
-function captureForm(event) {
-  event.preventDefault()
-  
-  const inputTitle = document.querySelector('#title')
-  const inputDescription = document.querySelector('#description')
-  const inputIsbn = document.querySelector('#isbn')
+function submitForm(e) {
+  e.preventDefault()
+  const formElements = e.target.elements
+  const title = formElements.title.value
+  const description = formElements.description.value
+  const isbn = formElements.isbn.value
 
-  const title = inputTitle.value
-  const description = inputDescription.value
-  const isbn = inputIsbn.value
   const book = {
     title: title,
     description: description,
     isbn: isbn
   }
-  
-  // tip: reset form if successfull - how do i findout if successful??
-  form.reset();
 
   postBook(book)
+    .then(book => {
+      e.target.reset() // reset form
+      return createBookItem(book)
+    })
+    .then(el => bookList.prepend(el))
+    .catch(err => console.error(err))
 }
 
 // 5. postBook async function
@@ -79,13 +77,7 @@ async function postBook(book) {
     },
     body: JSON.stringify(book)
   }
-  console.dir(options)
-  
   const response = await fetch(url, options)
-  // console.dir(response.body)
   const newBook = await response.json()
-  // console.dir(newBook)
-  
-  // 6. prepend new book to bookList
-  bookList.prepend(createBookItem(newBook))
+  return newBook
 }

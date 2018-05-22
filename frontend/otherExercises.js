@@ -5,3 +5,43 @@
 //   isbn: "0062457713"
 // }
 // bookList.appendChild(createBookItem(book))
+
+
+const fruit = ['banana', 'apple', 'orange']
+
+// function doSomething(arr) {
+//   return arr.reverse()
+// }
+// // const y = [...fruit]
+// // y
+// const x = doSomething([...fruit])
+// fruit
+// x
+
+// const fruitWoo = fruit.map( x => {
+//   return x + '!'
+// })
+
+// console.log(fruitWoo)
+
+// fruit.forEach( x => {
+//   x = fruit.pop()
+// })
+// fruit
+
+// const x = [...fruit, 'pear']
+// // ... spreads the contents
+// fruit
+// x
+
+// const person = {
+//   firstName: 'Sarah',
+//   lastName: 'Connor'
+// }
+
+// const sarah = {...person, age: 23}
+// console.log(sarah, person)
+// function greeting({firstName, lastName}) {
+//   console.log(`terminator says: ${firstName} ${lastName}`)
+// }
+// greeting(person)
