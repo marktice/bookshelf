@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <link rel="stylesheet" href="css/materialize.min.css">
+  <script src="js/materialize.min.js"></script>
+  <script src="js/vue.js"></script>
+  <script src="js/index.js"></script>
+
+  <title>Vue frontend</title>
+</head>
+<body>
+  <h1>Vueeee</h1>
+  <div id="app">
+    <main>
+      <h1>Bookshelf</h1>
+      <loader :books="books">
+        <books-list :books="books" :delete-book="deleteBook"></books-list>
+      </loader>
+    </main>
+  </div>
+</body>
+</html>
